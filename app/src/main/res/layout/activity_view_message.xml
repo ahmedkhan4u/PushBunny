@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#11F44336"
+    tools:context=".ViewMessageActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:id="@+id/topBar"
+        android:background="@color/orange"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="center_vertical"
+            android:padding="16dp"
+            android:id="@+id/onBack"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back To All Messages"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/deleteMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_menu" />
+</RelativeLayout>
+
+    </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="bottom"
+       android:orientation="vertical"
+       android:layout_marginTop="60dp"
+       android:paddingBottom="8dp"
+       android:layout_alignParentBottom="true"
+       >
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/time"
+           android:text="2 mins ago"
+           android:layout_marginHorizontal="16dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginBottom="10dp"
+           android:textSize="11dp"
+           android:textColor="@color/white"
+           android:background="@drawable/time_bg"
+           android:textAlignment="center"
+           android:paddingHorizontal="8dp"
+           android:paddingVertical="4dp"
+           android:layout_gravity="center"
+           android:layout_alignTop="@+id/mview"
+           />
+
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginHorizontal="16dp"
+               android:layout_marginBottom="24dp"
+               android:id="@+id/mview"
+               android:layout_alignParentBottom="true"
+               android:background="@drawable/message_bg"
+               >
+
+               <androidx.cardview.widget.CardView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:cardCornerRadius="10dp"
+                   app:cardBackgroundColor="#e9e9e9"
+                   android:id="@+id/cardView"
+                   >
+                   <ImageView
+                       android:layout_width="fill_parent"
+                       android:layout_height="fill_parent"
+                       android:layout_gravity="center"
+                       android:adjustViewBounds="true"
+                       android:src="@drawable/ic_image_holder"
+                       android:id="@+id/imageUser"
+                       android:scaleType="fitXY"
+                       />
+               </androidx.cardview.widget.CardView>
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/title"
+                   android:layout_gravity="bottom"
+                   android:text="Titlee"
+                   style="@style/TextAppearance.AppCompat.Title"
+                   android:textSize="16dp"
+                   android:layout_marginHorizontal="16dp"
+                   android:layout_marginTop="16dp"
+                   />
+
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/subTitle"
+                   android:text=""
+                   android:textSize="15dp"
+                   android:layout_marginHorizontal="16dp"
+                   android:layout_marginTop="4dp"
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/message"
+                   android:text="Message gore here..."
+                   android:layout_marginHorizontal="16dp"
+                   android:layout_marginTop="4dp"
+                   android:layout_marginBottom="24dp"
+                   android:textSize="14dp"
+                   android:textColor="#444444"
+                   />
+           </LinearLayout>
+       </ScrollView>
+   </LinearLayout>
+
+</RelativeLayout>

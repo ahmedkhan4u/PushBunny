@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:orientation="vertical"
+    android:padding="24dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Push Bunny"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your API Key"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/text_dark"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_copy"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="4dp"
+        android:background="#E3E3E3"
+        android:textColor="@color/text_dark"
+        android:padding="4dp"
+        android:id="@+id/userid"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:text="7dcb66d6-ad57-4d98-8dc1-d0649b3307ec"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How to Use?"
+        android:textColor="@color/text_dark"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point1"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/text_dark"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point2"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/text_dark"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Delete All Messages"
+        android:layout_marginTop="50dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:id="@+id/btnDeleteAll"
+        android:background="@drawable/button_bg"
+        />
+</LinearLayout>

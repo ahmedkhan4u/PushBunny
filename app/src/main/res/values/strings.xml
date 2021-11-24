@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Push Bunny</string>
+    <string name="point1">1. Create <b>POST</b> request to <b>https://push-bunny.com/api</b> and set header
+        <b>push-bunny-api-key</b> to your API key.</string>
+    <string name="point2">2. In the JSON body. include a <b>title, sub-title, description</b> and <b>image-url</b></string>
+</resources>
