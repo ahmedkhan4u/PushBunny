@@ -2,19 +2,24 @@ package com.pushbunny;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ComponentActivity;
 
 import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pushbunny.Adapters.NotificationAdapter;
 import com.pushbunny.Models.NotificationModel;
@@ -31,13 +36,20 @@ public class ViewMessageActivity extends AppCompatActivity {
     private ImageView imageView;
     private CardView cardView;
     private ImageView deleteMessage;
+    private AppCompatButton btnUrl;
 
-    NotificationModel model = NotificationAdapter.selectedItem.get(0);
+    NotificationModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_message);
+
+        if (MainActivity.tempList.size() > 0) {
+            model = MainActivity.tempList.get(0);
+        }else{
+            model = NotificationAdapter.selectedItem.get(0);
+        }
 
         txtTitle = findViewById(R.id.title);
         txtMessage = findViewById(R.id.message);
@@ -46,10 +58,14 @@ public class ViewMessageActivity extends AppCompatActivity {
         txtTime = findViewById(R.id.time);
         cardView = findViewById(R.id.cardView);
         deleteMessage = findViewById(R.id.deleteMessage);
+        btnUrl = findViewById(R.id.btnUrl);
 
         if (model.getOtherData().isEmpty() || model.getOtherData().equals("{}")){
             txtSubTitle.setVisibility(View.GONE);
         }
+
+
+        Log.d("dxdiag" , model.getOtherData().toString());
 
         deleteMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +135,7 @@ public class ViewMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                MainActivity.tempList.clear();
             }
         });
 
@@ -138,8 +155,34 @@ public class ViewMessageActivity extends AppCompatActivity {
             JSONObject object = new JSONObject(model.getOtherData());
             txtSubTitle.setText(object.getString("subtitle"));
 
+            String url = object.getString("url");
+            String urlTitle = object.getString("url-title");
+
+            Log.d("dxdiag", "Url => " + url);
+
+            if (!url.equals("")){
+                btnUrl.setVisibility(View.VISIBLE);
+                btnUrl.setText(urlTitle);
+                btnUrl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }
+                });
+            }else {
+                btnUrl.setVisibility(View.GONE);
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainActivity.tempList.clear();
+        super.onBackPressed();
     }
 }

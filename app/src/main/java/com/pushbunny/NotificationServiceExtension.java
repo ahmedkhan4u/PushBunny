@@ -61,11 +61,8 @@ public class NotificationServiceExtension implements OSRemoteNotificationReceive
                     || notification.getAdditionalData().equals("")
                     ? "" : notification.getAdditionalData().toString();
 
-
             Log.d("dxdiag : ","image data : " + image);
             Log.d("dxdiag : ","other data : " + otherData);
-
-
 
             boolean inserted = db.insertData(spannableTitle.toString(), spannableBody.toString(), new Date().getTime()+"", image, otherData);
             if (inserted = true) {

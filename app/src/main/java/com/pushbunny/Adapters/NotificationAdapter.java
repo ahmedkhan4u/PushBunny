@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,10 +58,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         if (model.getOtherData().isEmpty() || model.getOtherData().equals("{}")){
             holder.subtitle.setVisibility(View.GONE);
+        }else {
+            holder.subtitle.setVisibility(View.VISIBLE);
         }
+
         try {
-            JSONObject subTitle = new JSONObject(model.getOtherData());
-            holder.subtitle.setText(subTitle.getString("subtitle"));
+            JSONObject otherData = new JSONObject(model.getOtherData());
+            holder.subtitle.setText(otherData.getString("subtitle"));
+//
+//            if (otherData.getString("rtl") != null &&otherData.getString("rtl").equals("1")){
+//                holder.layoutDirection.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+//            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -119,11 +127,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView title, time, subtitle;
+        private RelativeLayout layoutDirection;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             time = itemView.findViewById(R.id.time);
             subtitle = itemView.findViewById(R.id.subtitle);
+            layoutDirection = itemView.findViewById(R.id.layoutDirection);
         }
     }
 

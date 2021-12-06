@@ -94,7 +94,7 @@
                android:layout_height="wrap_content"
                android:orientation="vertical"
                android:layout_marginHorizontal="16dp"
-               android:layout_marginBottom="24dp"
+               android:layout_marginBottom="16dp"
                android:id="@+id/mview"
                android:layout_alignParentBottom="true"
                android:background="@drawable/message_bg"
@@ -148,9 +148,23 @@
                    android:text="Message gore here..."
                    android:layout_marginHorizontal="16dp"
                    android:layout_marginTop="4dp"
-                   android:layout_marginBottom="24dp"
+                   android:layout_marginBottom="16dp"
                    android:textSize="14dp"
                    android:textColor="#444444"
+                   />
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:background="@drawable/btn_outlined"
+                   android:id="@+id/btnUrl"
+                   android:text=""
+                   android:textAllCaps="false"
+                   android:layout_gravity="center"
+                   android:layout_marginBottom="12dp"
+                   android:visibility="gone"
+                   android:layout_marginHorizontal="16dp"
+                   android:paddingHorizontal="4dp"
                    />
            </LinearLayout>
        </ScrollView>

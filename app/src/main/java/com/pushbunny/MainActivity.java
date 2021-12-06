@@ -40,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,11 +84,13 @@ public class MainActivity extends AppCompatActivity {
     private String userId;
     private CountDownTimer countDownTimer;
     private LinearLayout progressBar;
+    public static List<NotificationModel> tempList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tempList = new ArrayList<>();
         //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
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         context = MainActivity.this;
@@ -200,6 +203,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void notificationOpened(OSNotificationOpenedResult result) {
                 Log.d("dxdiag : ", "Result : " + result);
+                OSNotification notification = result.getNotification();
+                Spannable spannableTitle = new SpannableString(notification.getTitle());
+                spannableTitle.setSpan(new ForegroundColorSpan(Color.BLACK),0,notification.getTitle().length(),0);
+                // Sets the notification Body to Blue
+                Log.d("dxdiag : ", spannableTitle.toString());
+                Spannable spannableBody = new SpannableString(notification.getBody());
+
+                Log.d("dxdiag : ", spannableBody.toString());
+
+                String image = notification.getBigPicture() == null ? "" : notification.getBigPicture();
+
+                String otherData = notification.getAdditionalData() == null
+                        || notification.getAdditionalData().equals("{}")
+                        || notification.getAdditionalData().equals("")
+                        ? "" : notification.getAdditionalData().toString();
+
+                Log.d("dxdiag : ","image data : " + image);
+                Log.d("dxdiag : ","other data : " + otherData);
+
+                tempList.add(new NotificationModel("",spannableTitle.toString(),
+                spannableBody.toString(), new Date().getTime()+"", image, otherData));
+
+                startActivity(new Intent(MainActivity.this, ViewMessageActivity.class));
+
                 getDataFromDb(db, list);
                 adapter = new NotificationAdapter(MainActivity.this, list);
                 recyclerView.setAdapter(adapter);

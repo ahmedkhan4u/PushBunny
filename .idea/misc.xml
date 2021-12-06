@@ -6,6 +6,7 @@
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/drawable-anydpi/ic_search.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable-anydpi/ic_user.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/btn_outlined.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/button_bg.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/edt_search_bg.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/item_view_bg.xml" value="0.209375" />
