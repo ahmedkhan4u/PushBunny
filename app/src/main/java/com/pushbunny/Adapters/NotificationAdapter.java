@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,10 +66,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         try {
             JSONObject otherData = new JSONObject(model.getOtherData());
             holder.subtitle.setText(otherData.getString("subtitle"));
-//
-//            if (otherData.getString("rtl") != null &&otherData.getString("rtl").equals("1")){
-//                holder.layoutDirection.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-//            }
+
+            if (otherData.getString("rtl").equals("1")){
+                holder.title.setGravity(Gravity.LEFT);
+                holder.title.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+                holder.subtitle.setGravity(Gravity.LEFT);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
