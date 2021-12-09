@@ -89,8 +89,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        // OneSignal Initialization
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
+        // Enable verbose OneSignal logging to debug issues if needed.
         tempList = new ArrayList<>();
+        db = new DatabaseHelper(this);
         //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
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         context = MainActivity.this;
@@ -104,40 +111,27 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        // OneSignal Initialization
-        OneSignal.initWithContext(this);
-        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
         startTimer();
+//        OneSignal.setNotificationWillShowInForegroundHandler(new OneSignal.OSNotificationWillShowInForegroundHandler() {
+//            @Override
+//            public void notificationWillShowInForeground(OSNotificationReceivedEvent notificationReceivedEvent) {
+//                OSNotification notification = notificationReceivedEvent.getNotification();
+//                Log.d("dxdiag" , "Receiveddd.." + notification.getTitle());
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // Stuff that updates the UI
+//                        getDataFromDb(db, list);
+//                        adapter.notifyDataSetChanged();
+//                        Log.d("dxdiag" , "Ui Thread..");
+//                    }
+//                });
+//            }
+//        });
 
         setupUI(findViewById(R.id.layout));
-
-        OneSignal.setNotificationWillShowInForegroundHandler(new OneSignal.OSNotificationWillShowInForegroundHandler() {
-            @Override
-            public void notificationWillShowInForeground(OSNotificationReceivedEvent notificationReceivedEvent) {
-                OSNotification notification = notificationReceivedEvent.getNotification();
-
-                notificationReceivedEvent.complete(notification);
-
-                if (notification != null || !notification.equals("{}") || !notification.equals("")){
-                    Log.d("dxdiag" , "Receiveddd..");
-
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-
-                            // Stuff that updates the UI
-                            getDataFromDb(db, list);
-                            adapter.notifyDataSetChanged();
-                            Log.d("dxdiag" , "Ui Thread..");
-
-                        }
-                    });
-                }
-
-            }
-        });
+        Log.d("dxdiag : ", "Hello Push Bunny");
 
         findViewById(R.id.settings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,12 +187,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        db = new DatabaseHelper(this);
-        Log.d("dxdiag : ", "Hello Push Bunny");
-
-        // Enable verbose OneSignal logging to debug issues if needed.
-        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
-
         OneSignal.setNotificationOpenedHandler(new OneSignal.OSNotificationOpenedHandler() {
             @Override
             public void notificationOpened(OSNotificationOpenedResult result) {
@@ -233,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
 
         searchView.addTextChangedListener(new TextWatcher() {
             @Override

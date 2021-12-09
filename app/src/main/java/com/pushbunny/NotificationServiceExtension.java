@@ -67,12 +67,11 @@ public class NotificationServiceExtension implements OSRemoteNotificationReceive
             boolean inserted = db.insertData(spannableTitle.toString(), spannableBody.toString(), new Date().getTime()+"", image, otherData);
             if (inserted = true) {
                 Log.d("dxdiag : ", "Data Inserted Successfully");
-
             } else {
                 Log.d("dxdiag : ", "Data Insertion Failed");
             }
             //Force remove push from Notification Center after 30 seconds
-            builder.setTimeoutAfter(3000000);
+            builder.setTimeoutAfter(300000);
             return builder;
         });
         JSONObject data = notification.getAdditionalData();
